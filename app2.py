@@ -299,7 +299,7 @@ with st.sidebar:
         num_prep_path = st.text_input(T['num_preproc'], value=DEFAULT_PATHS["num_preprocessor"]) 
         keras_model_path = st.text_input(T['keras_model'], value=DEFAULT_PATHS["keras_model"]) 
         keras_weights_path = st.text_input(T['keras_weights'], value=DEFAULT_PATHS["keras_weights"]) 
-        embedder_url = st.text_input(T['embedder'], value="https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
+        embedder_url = st.text_input(T['embedder'], value="https://www.kaggle.com/models/google/universal-sentence-encoder/tensorFlow2/multilingual")
 
 # Load artifacts once
 preprocessor = load_preprocessor(num_prep_path)

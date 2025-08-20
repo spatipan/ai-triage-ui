@@ -35,7 +35,7 @@ markdown-it-py==4.0.0
 MarkupSafe==3.0.2
 matplotlib==3.10.5
 mdurl==0.1.2
-ml_dtypes==0.5.3
+ml-dtypes==0.4.1
 namex==0.1.0
 narwhals==1.31.0
 numexpr==2.11.0
@@ -65,14 +65,14 @@ six==1.17.0
 smmap==5.0.2
 streamlit==1.48.0
 tenacity==9.0.0
-tensorboard==2.19.0
+tensorboard==2.18.0
 tensorboard-data-server==0.7.2
-tensorflow==2.19.1
+tensorflow==2.18.0
 tensorflow-hub==0.16.1
 tensorflow-io-gcs-filesystem==0.37.1
-tensorflow-text==2.19.0
+tensorflow-text==2.18.0
 termcolor==3.1.0
-tf_keras==2.19.0
+tf_keras==2.18.0
 threadpoolctl==3.6.0
 toml==0.10.2
 tornado==6.5.1
