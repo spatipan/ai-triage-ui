@@ -229,10 +229,29 @@ def load_preprocessor(num_preprocessor_path: str) -> DataPreprocessing:
         pass
     return dp
 
+# @st.cache_resource(show_spinner=False)
+# def load_embedder(embedder_url: str):
+#     # tensorflow_text import above ensures custom ops are registered for multilingual USE
+#     return hub.load(embedder_url)
+
 @st.cache_resource(show_spinner=False)
-def load_embedder(embedder_url: str):
-    # tensorflow_text import above ensures custom ops are registered for multilingual USE
-    return hub.load(embedder_url)
+def load_embedder(handle: str):
+    """Load TF-Hub text embedder.
+
+    - If `handle` points to a local SavedModel dir, load with tf.saved_model.load.
+    - Otherwise, load as a TF-Hub module/SavedModel through KerasLayer.
+    """
+    import tensorflow as tf, os
+    # Local SavedModel?
+    if os.path.isdir(handle) and (
+        os.path.exists(os.path.join(handle, "saved_model.pb")) or
+        os.path.exists(os.path.join(handle, "saved_model.pbtxt"))
+    ):
+        return tf.saved_model.load(handle)
+
+    # TF-Hub handle (module or SavedModel) → KerasLayer
+    return hub.KerasLayer(handle, trainable=False)
+
 
 @st.cache_resource(show_spinner=False)
 def load_model(model_path: str, weights_path: str) -> TriageModel:
@@ -280,7 +299,7 @@ with st.sidebar:
         num_prep_path = st.text_input(T['num_preproc'], value=DEFAULT_PATHS["num_preprocessor"]) 
         keras_model_path = st.text_input(T['keras_model'], value=DEFAULT_PATHS["keras_model"]) 
         keras_weights_path = st.text_input(T['keras_weights'], value=DEFAULT_PATHS["keras_weights"]) 
-        embedder_url = st.text_input(T['embedder'], value="https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3")
+        embedder_url = st.text_input(T['embedder'], value="https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
 
 # Load artifacts once
 preprocessor = load_preprocessor(num_prep_path)
