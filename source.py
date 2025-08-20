@@ -215,7 +215,6 @@ class DataPreprocessing:
         self.y_cols = None
 
         self.num_preprocessor = None
-        # self.text_embedder_path = '/Users/patipansittiprawiat/.cache/kagglehub/models/google/universal-sentence-encoder/tensorFlow2/multilingual-large/2'
         self.text_embedder_path = 'https://www.kaggle.com/models/google/universal-sentence-encoder/tensorFlow2/multilingual'
         self.text_embedder = TextEmbedder(self.text_embedder_path)
 
