@@ -239,22 +239,14 @@ def load_preprocessor(num_preprocessor_path: str) -> DataPreprocessing:
 #     return hub.load(embedder_url)
 
 @st.cache_resource(show_spinner=False)
-def load_embedder(handle: str):
-    """Load TF-Hub text embedder.
-
-    - If `handle` points to a local SavedModel dir, load with tf.saved_model.load.
-    - Otherwise, load as a TF-Hub module/SavedModel through KerasLayer.
-    """
-    import tensorflow as tf, os
-    # Local SavedModel?
-    if os.path.isdir(handle) and (
-        os.path.exists(os.path.join(handle, "saved_model.pb")) or
-        os.path.exists(os.path.join(handle, "saved_model.pbtxt"))
-    ):
-        return tf.saved_model.load(handle)
-
-    # TF-Hub handle (module or SavedModel) → KerasLayer
-    return hub.KerasLayer(handle, trainable=False)
+def load_embedder(url: str):
+    try:
+        # tensorflow_text import above ensures custom ops are registered
+        return hub.load(url)
+    except Exception as e:
+        st.error("Failed to load text embedder. Ensure TensorFlow Text matches your TF version (e.g., tensorflow==2.12.* with tensorflow-text==2.12.*)." 
+                 f"Details: {type(e).__name__}: {e}")
+        raise
 
 
 @st.cache_resource(show_spinner=False)
