@@ -31,6 +31,10 @@ import tensorflow_text  # Registers custom ops (e.g., SentencepieceOp) for TF‑
 # Project internals
 from src.source import DataPreprocessing, TriageModel
 
+# Set Kaggle credentials from secrets
+os.environ['KAGGLE_USERNAME'] = st.secrets["kaggle"]["username"]
+os.environ['KAGGLE_KEY'] = st.secrets["kaggle"]["key"]
+
 # ---------------------------
 # Page setup
 # ---------------------------
