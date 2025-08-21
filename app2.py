@@ -31,9 +31,9 @@ import tensorflow_text  # Registers custom ops (e.g., SentencepieceOp) for TF‑
 # Project internals
 from src.source import DataPreprocessing, TriageModel
 
-# Set Kaggle credentials from secrets
-os.environ['KAGGLE_USERNAME'] = st.secrets["kaggle"]["username"]
-os.environ['KAGGLE_KEY'] = st.secrets["kaggle"]["key"]
+# # Set Kaggle credentials from secrets
+# os.environ['KAGGLE_USERNAME'] = st.secrets["kaggle"]["username"]
+# os.environ['KAGGLE_KEY'] = st.secrets["kaggle"]["key"]
 
 # ---------------------------
 # Page setup
@@ -295,7 +295,7 @@ with st.sidebar:
         num_prep_path = st.text_input(T['num_preproc'], value=DEFAULT_PATHS["num_preprocessor"]) 
         keras_model_path = st.text_input(T['keras_model'], value=DEFAULT_PATHS["keras_model"]) 
         keras_weights_path = st.text_input(T['keras_weights'], value=DEFAULT_PATHS["keras_weights"]) 
-        embedder_url = st.text_input(T['embedder'], value="https://www.kaggle.com/models/google/universal-sentence-encoder/tensorFlow2/multilingual")
+        embedder_url = st.text_input(T['embedder'], value="https://www.kaggle.com/models/google/universal-sentence-encoder/TensorFlow2/multilingual/2")
 
 # Load artifacts once
 preprocessor = load_preprocessor(num_prep_path)

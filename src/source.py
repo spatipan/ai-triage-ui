@@ -215,8 +215,9 @@ class DataPreprocessing:
         self.y_cols = None
 
         self.num_preprocessor = None
-        self.text_embedder_path = 'https://www.kaggle.com/models/google/universal-sentence-encoder/tensorFlow2/multilingual'
-        self.text_embedder = TextEmbedder(self.text_embedder_path)
+        # self.text_embedder_path = '/Users/patipansittiprawiat/.cache/kagglehub/model/google/universal-sentence-encoder/tensorFlow2/multilingual-large/2'
+        # self.text_embedder_path = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3'
+        # self.text_embedder = TextEmbedder(self.text_embedder_path)
 
     def import_data(self, data, x_num_cols, x_text_cols, y_cols):
         train, val, test = data
